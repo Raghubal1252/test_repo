@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_material_requisition_indent,material.requisition.indent,model_material_requisition_indent,,1,1,1,1
+access_material_requisition_product_lines,material.requisition.product.lines,model_material_requisition_product_lines,,1,1,1,1
+access_material_requisition_request_product_lines,material.requisition.request.product.lines,model_material_requisition_request_product_lines,,1,1,1,1
+access_hr_employee_create,hr.employee.create,model_hr_employee_create,,1,1,1,1
+access_hr_employee_create_line,hr.employee.create.line,model_hr_employee_create_line,,1,1,1,1
+access_direct_po_remark_wizard,direct.po.remark.wizard,model_direct_po_remark_wizard,,1,1,1,1
+access_store_verified_remark,store.verified.remark,model_store_verified_remark,,1,1,1,1
+access_material_approval_config,material.approval.config,model_material_approval_config,,1,1,1,1
+access_material_requisition_approve_remarks,material.requisition.approve.remarks,model_material_requisition_approve_remarks,,1,1,1,1
+access_material_requisition_cancel_remarks,material.requisition.cancel.remarks,model_material_requisition_cancel_remarks,,1,1,1,1
+access_material_requisition_reject_remarks,material.requisition.reject.remarks,model_material_requisition_reject_remarks,,1,1,1,1
+access_material_requisition_excel_report_wizard,material.requisition.excel.report.wizard,model_material_requisition_excel_report_wizard,,1,1,1,1

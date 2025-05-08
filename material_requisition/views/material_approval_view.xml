@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="material_approval_config_form">
+            <field name="name">material_approval_config_form</field>
+            <field name="model">material.approval.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Material Type">
+                                <h1>
+                                    <field name="type_of_purchase" required="1"/>
+                                    <field name="approval_type" required="1" invisible="1"/>
+                                </h1>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Approvals">
+                                <field name="approval_levels" widget="selection" required="1"/>
+                                <field name="first_approval" required="1"/>
+                                <field name="second_approval"
+                                       invisible="approval_levels == 'first_level'"
+                                       required="approval_levels != 'first_level'"/>
+                                <field name="third_approval"
+                                       invisible="approval_levels in ['first_level', 'second_level']"
+                                       required="approval_levels not in ['first_level', 'second_level']"/>
+                                <field name="fourth_approval"
+                                       invisible="approval_levels in ['first_level', 'second_level', 'third_level']"
+                                       required="approval_levels not in ['first_level', 'second_level', 'third_level']"/>
+                                <field name="fifth_approval"
+                                       invisible="approval_levels in ['first_level', 'second_level', 'third_level', 'fourth_level']"
+                                       required="approval_levels not in ['first_level', 'second_level', 'third_level','fourth_level']"/>
+                            </group>
+                            <group string="Defaults">
+                                <field name='company_id' readonly="1"/>
+                                <field name='default_type' invisible="1"/>
+                                <field name='seq_id' required="1" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="material_approval_config_list">
+            <field name="name">material_approval_config_list</field>
+            <field name="model">material.approval.config</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="type_of_purchase"/>
+                    <field name="approval_type"/>
+                    <field name="approval_levels"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="purchase_request_approval_config_action">
+            <field name="name">Material Request Approvers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">material.approval.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_approval_type': 'material_request'}</field>
+            <field name="domain">[('approval_type', '=', 'material_request')]</field>
+        </record>
+
+        <menuitem id="material_approval_rules_config"
+                  name="Approval Rules"
+                  parent="purchase.menu_purchase_config"
+                  sequence="71"/>
+
+        <menuitem name="Material Request Approvers"
+                  id="material_request_config_menu"
+                  parent="material_approval_rules_config"
+                  action="purchase_request_approval_config_action"
+                  sequence="19"/>
+
+    </data>
+</odoo>
